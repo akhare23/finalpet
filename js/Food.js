@@ -1,7 +1,7 @@
 class Food{
     constructor(){
         this.milkImage = loadImage("milk.png");;
-        this.foodStock = database.ref("food").on("value", readStock(foodS));
+        this.foodStock = database.ref("food").on("value", readStock);
         
         
     }
