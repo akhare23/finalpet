@@ -1,28 +1,31 @@
 class Food{
     constructor(){
-        this.milkImage = loadImage("milk.png");;
-        this.foodStock = database.ref("food").on("value", readStock);
+        this.milkImage = loadImage("images/milk.png");;
+        this.foodStock = 0;
+        this.lastFed;
         
         
     }
 
     getFoodStock(){
-        database.ref('food').on("value",(data)=>{
-            food = foodStock;
-        });
-    }
+        return this.foodStock;
+        };
 
-    updateFoodStock(){
-        database.ref("/").update({
-            food:foodS
-        })
+    updateFoodStock(foodStock){
+       this.foodStock = foodStock;
+        }
 
 
-    }
     deductFood(){
-        
+        if(this.foodStock>0){
+            this.foodStock = this.foodStock-1;
+        }
+    }
+    getFedTime(lastFed){
+        this.lastFed=lastFed;
     }
     display(){
+        //console.log(this.foodStock);
         var x=80,y=100;
         imageMode(CENTER);
         image(this.milkImage,720,220,70,70);
@@ -38,5 +41,14 @@ class Food{
             }
         }
         
+    }
+    bedroom(){
+        background(bedroom,550,500);
+    }
+    garden(){
+        background(garden,550,500);
+    }
+    washroom(){
+        background(washroom,550,500);
     }
 }
