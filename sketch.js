@@ -1,5 +1,6 @@
 //Create variables here
 var dog1;
+var bg;
 var dog, happyDog, bedroom, deadDog, dogVaccination, foodImages, garden, injection, lazy, livingRoom, milk, running, runningLeft, catVaccination, washRoom;
 var foodS, foodObj, foodStock;
 //var foodStock;
@@ -12,7 +13,7 @@ function preload()
 {
   dog = loadImage("images/dogImg.png");
   happyDog = loadImage("images/dogImg1.png");
-  bedroom = loadImage("images/Bed Room.png")
+  bedroom = loadImage("images/BedRoom.png")
   deadDog = loadImage("images/deadDog.png");
   dogVaccination = loadImage("images/dogVaccination.png");
   foodImages =loadImage("images/Food Stock.png");
@@ -24,7 +25,8 @@ function preload()
   milk = loadImage("images/milk.png");
   runningLeft = loadImage("images/runningLeft.png");
   catVaccination=loadImage("images/Vaccination.jpg");
-  washRoom = loadImage("images/Wash Room.png")
+  washRoom = loadImage("images/WashRoom.png")
+
 	//load images here
 }
 
@@ -48,6 +50,11 @@ function setup() {
   button2 = createButton("Add Food");
   button2.position(600,100);
   button2.mousePressed(addFoods);
+
+  bg = createSprite(500,250,100,100);
+  bg.addImage("bedroom", bedroom);
+  bg.addImage("washroom", washRoom);
+  bg.addImage("garden", garden);
 
 
 }
@@ -75,15 +82,14 @@ function draw() {
   currentTime=hour();
 if(currentTime===(lastFed+1)){
   update("playing");
-  foodObj.garden();
+  bg.changeImage(bedroom);
 
 }else if(currentTime === (lastFed+2)){
   update("sleeping");
-  foodObj.bedroom();
+  bg.changeImage(washroom);
 }else if(currentTime>(lastFed+2)&& currentTime<=(lastFed+4)){
   update("bathing");
-  foodObj.washroom();
-
+  bg.changeImage(garden);
 }else{
   update("hungry");
   foodObj.display();
@@ -138,6 +144,7 @@ function update(state){
     gameState:state
   })
 }
+
 
 
 
